@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\AnnouncementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('announcements')->controller(AnnouncementController::class)->group(function () {
+    Route::get('', 'index')->name('announcements.index');
+    Route::get('{announcement}', 'show')->name('announcements.show');
+    Route::post('', 'store')->name('announcements.store');
+    Route::put('{announcement}', 'update')->name('announcements.update');
+    Route::delete('{announcement}', 'delete')->name('announcements.delete');
 });
