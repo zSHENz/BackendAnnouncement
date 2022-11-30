@@ -43,6 +43,6 @@ class StoreAnnouncementRequest extends FormRequest
         throw new HttpResponseException(response()->json([
             'message'   => 'Validation errors',
             'data'      => $validator->errors()
-        ], HttpStatus::Unauthorized->value));
+        ], HttpStatus::BadRequest->value));
     }
 }
